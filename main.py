@@ -4,7 +4,7 @@ import math
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 
-valor_fixo = 2000.00
+valor_contrato = 2000.00
 
 class Imovel:
     def __init__(self, tipo: str, qtd_quarto: int = 1, qtd_vaga: int = 0, crianca: bool = True):
@@ -68,3 +68,11 @@ class Imovel:
         mensalidade = subtotal - desconto
 
         return round(mensalidade + 1e-9, 2)
+    
+class Orcamento:
+    def __init__(self, imovel: Imovel, valor_contrato: float = valor_contrato, parcelas_contrato: int = 1 ):
+        if parcelas_contrato < 1 or parcelas_contrato > 5:
+            raise ValueError("Número de parcelas deve ser entre 1 e 5")
+        self.imovel = imovel
+        self.valor_contrato = valor_contrato
+        self.parcelas_contrato = parcelas_contrato
