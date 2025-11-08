@@ -52,7 +52,7 @@
 
 <div align="center"> 
     <h1>💼 Contribuidores e Membros</h1> 
-    <a href="https://github.com/gabriela-agbl/orcamento_imobiliario/graphs/contributors"> 
-    <img src="https://contrib.rocks/image?repo=gabriela-agbl/orcamento_imobiliario"/> 
+    <a href="https://github.com/gabriela-agbl/orcamento_imobiliaria/graphs/contributors"> 
+    <img src="https://contrib.rocks/image?repo=gabriela-agbl/orcamento_imobiliaria"/> 
     </a> 
 </div>
