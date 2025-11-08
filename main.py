@@ -205,3 +205,38 @@ class App:
             self.quartos_var.set(1)
         else:
             self.quartos_spin.configure(state="normal")
+
+    def calcular(self):
+        tipo = self.tipo_var.get()
+        quartos = int(self.quartos_var.get())
+        vagas = int(self.vagas_var.get())
+        criancas = bool(self.criancas_var.get())
+        contrato_parcelas = int(self.contrato_parcelas_var.get())
+
+        imovel = Imovel(tipo=tipo, quartos=quartos, vagas=vagas, crianças=criancas)
+        orc = Orcamento(imovel=imovel, contrato_total=valor_contrato, contrato_parcelas=contrato_parcelas)
+
+        mensalidade = imovel.calcular_mensalidade()
+        parcela_contrato = orc.valor_parcela()
+        total_primeiro_mes = round(mensalidade + parcela_contrato, 2)
+
+        self.lbl_mensalidade.config(text=f"Mensalidade: R$ {mensalidade:,.2f}")
+        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato:,.2f} (parcelas: {contrato_parcelas}x R$ {parcela_contrato:,.2f})")
+        self.lbl_total_primeiro_mes.config(text=f"Total no 1º mês (incluindo parcela do contrato): R$ {total_primeiro_mes:,.2f}")
+
+        detalhes = []
+        detalhes.append(f"Tipo: {tipo}")
+        if tipo != "Estudio":
+            detalhes.append(f"Quartos: {quartos}")
+        detalhes.append(f"Vagas: {vagas}")
+        detalhes.append(f"Possui crianças: {'Sim' if criancas else 'Não'}")
+        detalhes.append(f"Mensalidade calculada: R$ {mensalidade:,.2f}")
+        detalhes.append(f"Contrato total: R$ {valor_contrato:,.2f} dividido em {contrato_parcelas}x de R$ {parcela_contrato:,.2f}")
+        detalhes_text = "\n".join(detalhes)
+
+        self.text_detail.configure(state="normal")
+        self.text_detail.delete("1.0", tk.END)
+        self.text_detail.insert(tk.END, detalhes_text)
+        self.text_detail.configure(state="disabled")
+
+        self._ultima_orcamento = orc
