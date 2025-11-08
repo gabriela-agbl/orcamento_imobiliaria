@@ -53,3 +53,8 @@ class Imovel:
                 return 250.00 + 60.00 * (vaga - 2)
         else:
             return 0.00
+        
+    def desconto_apto(self, subtotal: float) -> float:
+        if self.tipo == 'Apartamento' and not self.crianca:
+            return subtotal * 0.05
+        return 0.00
