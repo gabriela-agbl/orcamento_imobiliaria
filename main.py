@@ -267,7 +267,22 @@ class App:
                                                      initialfile="orcamento.csv")
             if file_path:
                 orc.gerar_csv(file_path)
-                
+
                 messagebox.showinfo("CSV Gerado", f"Arquivo salvo em:\n{file_path}")
         except Exception as e:
             messagebox.showerror("Erro", f"Ocorreu um erro ao gerar o CSV:\n{e}")
+
+    def limpar(self):
+        self.tipo_var.set("Apartamento")
+        self.quartos_var.set(1)
+        self.vagas_var.set(0)
+        self.criancas_var.set(True)
+        self.contrato_parcelas_var.set(1)
+        self.lbl_mensalidade.config(text="Mensalidade: R$ 0.00")
+        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato:.2f} (parcelas: 1x R$ {valor_contrato:.2f})")
+        self.lbl_total_primeiro_mes.config(text="Total no 1º mês (incluindo parcela do contrato): R$ 0.00")
+        self.text_detail.configure(state="normal")
+        self.text_detail.delete("1.0", tk.END)
+        self.text_detail.configure(state="disabled")
+        if hasattr(self, "_ultima_orcamento"):
+            delattr(self, "_ultima_orcamento")
