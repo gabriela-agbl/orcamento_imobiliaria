@@ -36,3 +36,20 @@ class Imovel:
                 0.00
         else:
             return 0.00
+        
+    def valor_extra_vaga(self) -> float:
+        if self.tipo in ('Apartamento', 'Casa'):
+            return 300.00 * self.qtd_vaga
+        elif self.tipo == 'Estudio':
+            vaga = self.qtd_vaga
+
+            if vaga == 0:
+                return 0.00
+            elif vaga == 1:
+                return 60.00
+            elif vaga == 2:
+                return 250.00
+            else:
+                return 250.00 + 60.00 * (vaga - 2)
+        else:
+            return 0.00
