@@ -121,3 +121,22 @@ class Orcamento:
                 ])
 
         return caminho
+    
+class App:
+    def __init__(self, root: tk.Tk):
+        self.root = root
+        root.title("Orçamento de Aluguel - R.M Imobiliária")
+        root.geometry("620x420")
+        root.resizable(False, False)
+
+        self.frame = ttk.Frame(root, padding=12)
+        self.frame.pack(fill=tk.BOTH, expand=True)
+
+        self.tipo_var = tk.StringVar(value="Apartamento")
+        self.quartos_var = tk.IntVar(value=1)
+        self.vagas_var = tk.IntVar(value=0)
+        self.criancas_var = tk.BooleanVar(value=True)
+        self.contrato_parcelas_var = tk.IntVar(value=1)
+
+        self._build_form()
+        self._build_result_area()
