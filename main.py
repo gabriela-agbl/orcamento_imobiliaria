@@ -240,3 +240,17 @@ class App:
         self.text_detail.configure(state="disabled")
 
         self._ultima_orcamento = orc
+
+    def gerar_csv(self):
+        try:
+            orc = getattr(self, "_ultima_orcamento", None)
+            if orc is None:
+                self.calcular()
+                orc = self._ultima_orcamento
+
+            path = os.path.join(os.getcwd(), "orcamento.csv")
+            orc.gerar_csv(path)
+
+            messagebox.showinfo("CSV Gerado", f"Arquivo salvo em:\n{path}")
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ocorreu um erro ao gerar o CSV:\n{e}")
