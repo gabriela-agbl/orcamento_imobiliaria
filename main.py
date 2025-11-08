@@ -286,3 +286,11 @@ class App:
         self.text_detail.configure(state="disabled")
         if hasattr(self, "_ultima_orcamento"):
             delattr(self, "_ultima_orcamento")
+
+def main():
+    root = tk.Tk()
+    app = App(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
