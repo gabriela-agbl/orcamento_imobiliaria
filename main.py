@@ -4,7 +4,7 @@ import math
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 
-valor_contrato = 2000.00
+valor_contrato_padrao = 2000.00
 
 class Imovel:
     def __init__(self, tipo: str, qtd_quarto: int = 1, qtd_vaga: int = 0, crianca: bool = True):
@@ -70,7 +70,7 @@ class Imovel:
         return round(mensalidade + 1e-9, 2)
     
 class Orcamento:
-    def __init__(self, imovel: Imovel, valor_contrato: float = valor_contrato, parcelas_contrato: int = 1 ):
+    def __init__(self, imovel: Imovel, valor_contrato: float = valor_contrato_padrao, parcelas_contrato: int = 1 ):
         if parcelas_contrato < 1 or parcelas_contrato > 5:
             raise ValueError("Número de parcelas deve ser entre 1 e 5")
         self.imovel = imovel
@@ -90,7 +90,7 @@ class Orcamento:
             if mes <= self.parcelas_contrato:
                 parcela_do_contrato = parcela
             else:
-                return 0.00
+                parcela_do_contrato = 0.00
             
             total_mes = round(mensalidade + parcela_do_contrato + 1e-9, 2)
 
@@ -109,7 +109,7 @@ class Orcamento:
         if not parcelas:
             raise ValueError("Não há parcelas para gerar o CSV")
 
-        with open(caminho, mode='w', newline='', enconding = 'utf-8') as file:
+        with open(caminho, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow(['Mês', 'Mensalidade', 'Parcela do Contrato', 'Total do Mês'])
             for parcela in parcelas:
@@ -188,7 +188,7 @@ class App:
         self.lbl_mensalidade = ttk.Label(res_frame, text="Mensalidade: R$ 0.00", font=("TkDefaultFont", 11, "bold"))
         self.lbl_mensalidade.pack(anchor="w", pady=2)
 
-        self.lbl_contrato_info = ttk.Label(res_frame, text=f"Contrato: R$ {valor_contrato:.2f} (parcelas: 1x R$ {valor_contrato:.2f})")
+        self.lbl_contrato_info = ttk.Label(res_frame, text=f"Contrato: R$ {valor_contrato_padrao:.2f} (parcelas: 1x R$ {valor_contrato_padrao:.2f})")
         self.lbl_contrato_info.pack(anchor="w", pady=2)
 
         self.lbl_total_primeiro_mes = ttk.Label(res_frame, text="Total no 1º mês (incluindo parcela do contrato): R$ 0.00")
@@ -213,15 +213,15 @@ class App:
         criancas = bool(self.criancas_var.get())
         contrato_parcelas = int(self.contrato_parcelas_var.get())
 
-        imovel = Imovel(tipo=tipo, quartos=quartos, vagas=vagas, crianças=criancas)
-        orc = Orcamento(imovel=imovel, contrato_total=valor_contrato, contrato_parcelas=contrato_parcelas)
+        imovel = Imovel(tipo=tipo, qtd_quarto=quartos, qtd_vaga=vagas, crianca=criancas)
+        orc = Orcamento(imovel=imovel, valor_contrato=valor_contrato_padrao, parcelas_contrato=contrato_parcelas)
 
         mensalidade = imovel.calcular_mensalidade()
         parcela_contrato = orc.valor_parcela()
         total_primeiro_mes = round(mensalidade + parcela_contrato, 2)
 
         self.lbl_mensalidade.config(text=f"Mensalidade: R$ {mensalidade:,.2f}")
-        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato:,.2f} (parcelas: {contrato_parcelas}x R$ {parcela_contrato:,.2f})")
+        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato_padrao:,.2f} (parcelas: {contrato_parcelas}x R$ {parcela_contrato:,.2f})")
         self.lbl_total_primeiro_mes.config(text=f"Total no 1º mês (incluindo parcela do contrato): R$ {total_primeiro_mes:,.2f}")
 
         detalhes = []
@@ -231,7 +231,7 @@ class App:
         detalhes.append(f"Vagas: {vagas}")
         detalhes.append(f"Possui crianças: {'Sim' if criancas else 'Não'}")
         detalhes.append(f"Mensalidade calculada: R$ {mensalidade:,.2f}")
-        detalhes.append(f"Contrato total: R$ {valor_contrato:,.2f} dividido em {contrato_parcelas}x de R$ {parcela_contrato:,.2f}")
+        detalhes.append(f"Contrato total: R$ {valor_contrato_padrao:,.2f} dividido em {contrato_parcelas}x de R$ {parcela_contrato:,.2f}")
         detalhes_text = "\n".join(detalhes)
 
         self.text_detail.configure(state="normal")
@@ -279,7 +279,7 @@ class App:
         self.criancas_var.set(True)
         self.contrato_parcelas_var.set(1)
         self.lbl_mensalidade.config(text="Mensalidade: R$ 0.00")
-        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato:.2f} (parcelas: 1x R$ {valor_contrato:.2f})")
+        self.lbl_contrato_info.config(text=f"Contrato: R$ {valor_contrato_padrao:.2f} (parcelas: 1x R$ {valor_contrato_padrao:.2f})")
         self.lbl_total_primeiro_mes.config(text="Total no 1º mês (incluindo parcela do contrato): R$ 0.00")
         self.text_detail.configure(state="normal")
         self.text_detail.delete("1.0", tk.END)
