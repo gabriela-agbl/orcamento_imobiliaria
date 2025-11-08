@@ -254,3 +254,20 @@ class App:
             messagebox.showinfo("CSV Gerado", f"Arquivo salvo em:\n{path}")
         except Exception as e:
             messagebox.showerror("Erro", f"Ocorreu um erro ao gerar o CSV:\n{e}")
+
+    def gerar_csv_com_dialog(self):
+        try:
+            orc = getattr(self, "_ultima_orcamento", None)
+            if orc is None:
+                self.calcular()
+                orc = self._ultima_orcamento
+
+            file_path = filedialog.asksaveasfilename(defaultextension=".csv",
+                                                     filetypes=[("CSV files", "*.csv")],
+                                                     initialfile="orcamento.csv")
+            if file_path:
+                orc.gerar_csv(file_path)
+                
+                messagebox.showinfo("CSV Gerado", f"Arquivo salvo em:\n{file_path}")
+        except Exception as e:
+            messagebox.showerror("Erro", f"Ocorreu um erro ao gerar o CSV:\n{e}")
