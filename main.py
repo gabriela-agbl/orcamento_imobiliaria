@@ -58,3 +58,13 @@ class Imovel:
         if self.tipo == 'Apartamento' and not self.crianca:
             return subtotal * 0.05
         return 0.00
+    
+    def calcular_mensalidade(self) -> float:
+        valor_base = self.valor_base()
+        quarto_extra = self.valor_extra_quarto()
+        vaga_extra = self.valor_extra_vaga()   
+        subtotal = valor_base + quarto_extra + vaga_extra
+        desconto = self.desconto_apto(subtotal)
+        mensalidade = subtotal - desconto
+
+        return round(mensalidade + 1e-9, 2)
