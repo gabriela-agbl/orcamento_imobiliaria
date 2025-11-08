@@ -22,3 +22,17 @@ class Imovel:
             return 1200.00
         else:
             raise ValueError("Tipo de imóvel inválido")
+        
+    def valor_extra_quarto(self) -> float:
+        if self.tipo == 'Apartamento':
+            if self.qtd_quarto == 2:
+                return 200.00
+            else:
+                return 0.00
+        elif self.tipo == 'Casa':
+            if self.qtd_quarto == 2:
+                return 250.00
+            else:
+                0.00
+        else:
+            return 0.00
