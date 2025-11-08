@@ -180,3 +180,19 @@ class App:
         ttk.Label(frm, text=obs, wraplength=580, foreground="gray").grid(row=6, column=0, columnspan=2, pady=(10, 0))
 
         self._on_tipo_changed()
+
+    def _build_result_area(self):
+        res_frame = ttk.LabelFrame(self.frame, text="Resultado", padding=10)
+        res_frame.grid(row=7, column=0, columnspan=2, sticky="we", pady=(12, 0))
+
+        self.lbl_mensalidade = ttk.Label(res_frame, text="Mensalidade: R$ 0.00", font=("TkDefaultFont", 11, "bold"))
+        self.lbl_mensalidade.pack(anchor="w", pady=2)
+
+        self.lbl_contrato_info = ttk.Label(res_frame, text=f"Contrato: R$ {valor_contrato:.2f} (parcelas: 1x R$ {valor_contrato:.2f})")
+        self.lbl_contrato_info.pack(anchor="w", pady=2)
+
+        self.lbl_total_primeiro_mes = ttk.Label(res_frame, text="Total no 1º mês (incluindo parcela do contrato): R$ 0.00")
+        self.lbl_total_primeiro_mes.pack(anchor="w", pady=2)
+
+        self.text_detail = tk.Text(res_frame, height=6, width=72, state="disabled", wrap="word")
+        self.text_detail.pack(pady=(6, 0))
