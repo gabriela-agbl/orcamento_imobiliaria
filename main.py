@@ -102,3 +102,22 @@ class Orcamento:
             })
         
         return parcelas
+    
+    def gerar_csv(self, caminho: str = 'orcamento_imobiliaria.csv'):
+        parcelas = self.gerar_parcela_12_meses()
+
+        if not parcelas:
+            raise ValueError("Não há parcelas para gerar o CSV")
+
+        with open(caminho, mode='w', newline='', enconding = 'utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Mês', 'Mensalidade', 'Parcela do Contrato', 'Total do Mês'])
+            for parcela in parcelas:
+                writer.writerow([
+                    parcela['mes'],
+                    f"{parcela['mensalidade']:.2f}",
+                    f"{parcela['parcela_contrato']:.2f}",
+                    f"{parcela['total_mes']:.2f}"
+                ])
+
+        return caminho
