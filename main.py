@@ -33,7 +33,7 @@ class Imovel:
             if self.qtd_quarto == 2:
                 return 250.00
             else:
-                0.00
+                return 0.00
         else:
             return 0.00
         
@@ -76,3 +76,29 @@ class Orcamento:
         self.imovel = imovel
         self.valor_contrato = valor_contrato
         self.parcelas_contrato = parcelas_contrato
+
+    def valor_parcela(self) -> float:
+        return round(self.valor_contrato / self.parcelas_contrato + 1e-9, 2)
+    
+    def gerar_parcela_12_meses(self):
+        mensalidade = self.imovel.calcular_mensalidade()
+        parcela = self.valor_parcela()
+
+        parcelas = []
+
+        for mes in range(1, 13):
+            if mes <= self.parcelas_contrato:
+                parcela_do_contrato = parcela
+            else:
+                return 0.00
+            
+            total_mes = round(mensalidade + parcela_do_contrato + 1e-9, 2)
+
+            parcelas.append({
+                "mes": mes,
+                "mensalidade": mensalidade,
+                "parcela_contrato": parcela_do_contrato,
+                "total_mes": total_mes
+            })
+        
+        return parcelas
