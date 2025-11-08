@@ -140,3 +140,43 @@ class App:
 
         self._build_form()
         self._build_result_area()
+
+    def _build_form(self):
+        frm = self.frame
+
+        ttk.Label(frm, text="Tipo de imóvel:").grid(row=0, column=0, sticky="w")
+        tipo_cb = ttk.Combobox(frm, textvariable=self.tipo_var, state="readonly",
+                               values=["Apartamento", "Casa", "Estudio"])
+        tipo_cb.grid(row=0, column=1, sticky="w")
+        tipo_cb.bind("<<ComboboxSelected>>", lambda e: self._on_tipo_changed())
+
+        ttk.Label(frm, text="Quartos:").grid(row=1, column=0, sticky="w")
+        self.quartos_spin = ttk.Spinbox(frm, from_=1, to=2, textvariable=self.quartos_var, width=5)
+        self.quartos_spin.grid(row=1, column=1, sticky="w")
+
+        ttk.Label(frm, text="Número de vagas:").grid(row=2, column=0, sticky="w")
+        self.vagas_spin = ttk.Spinbox(frm, from_=0, to=10, textvariable=self.vagas_var, width=5)
+        self.vagas_spin.grid(row=2, column=1, sticky="w")
+
+        ttk.Label(frm, text="Possui crianças?").grid(row=3, column=0, sticky="w")
+        criancas_frame = ttk.Frame(frm)
+        criancas_frame.grid(row=3, column=1, sticky="w")
+        ttk.Radiobutton(criancas_frame, text="Sim", variable=self.criancas_var, value=True).pack(side=tk.LEFT)
+        ttk.Radiobutton(criancas_frame, text="Não", variable=self.criancas_var, value=False).pack(side=tk.LEFT)
+
+        ttk.Label(frm, text="Parcelas do contrato (até 5x):").grid(row=4, column=0, sticky="w")
+        self.contrato_spin = ttk.Spinbox(frm, from_=1, to=5, textvariable=self.contrato_parcelas_var, width=5)
+        self.contrato_spin.grid(row=4, column=1, sticky="w")
+
+        btn_frame = ttk.Frame(frm)
+        btn_frame.grid(row=5, column=0, columnspan=2, pady=(12, 8))
+        ttk.Button(btn_frame, text="Calcular Orçamento", command=self.calcular).pack(side=tk.LEFT, padx=6)
+        ttk.Button(btn_frame, text="Gerar CSV (12 parcelas)", command=self.gerar_csv).pack(side=tk.LEFT, padx=6)
+        ttk.Button(btn_frame, text="Salvar como...", command=self.gerar_csv_com_dialog).pack(side=tk.LEFT, padx=6)
+        ttk.Button(btn_frame, text="Limpar", command=self.limpar).pack(side=tk.LEFT, padx=6)
+
+        obs = ("Regras aplicadas automaticamente: valores base por tipo, acréscimos por 2º quarto, "
+               "vagas, desconto de 5% para apartamento sem crianças, contrato R$2000 parcelável em até 5x.")
+        ttk.Label(frm, text=obs, wraplength=580, foreground="gray").grid(row=6, column=0, columnspan=2, pady=(10, 0))
+
+        self._on_tipo_changed()
