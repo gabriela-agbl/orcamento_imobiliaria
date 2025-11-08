@@ -41,11 +41,11 @@
 
 <div align="center">
   <h2>⚙️ Tecnologias utilizadas e Ferramentas de apoio</h2>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/2560px-Python_logo_and_wordmark.svg.png" alt="Python" width="90"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/2560px-Python_logo_and_wordmark.svg.png" alt="Python" width="150"/>
   &emsp;&emsp;
-  <img src="https://ucarecdn.com/58fe6c9f-2b0f-455c-932a-cbcb7a72b224/-/resize/1050/" alt="Tkinter" width="90"/>
+  <img src="https://ucarecdn.com/58fe6c9f-2b0f-455c-932a-cbcb7a72b224/-/resize/1050/" alt="Tkinter" width="150"/>
   &emsp;&emsp;
-  <img src="https://cdn-icons-png.flaticon.com/512/8242/8242984.png" alt="CSV" width="70"/>
+  <img src="https://cdn-icons-png.flaticon.com/512/8242/8242984.png" alt="CSV" width="80"/>
 </div>
 
 ---
