@@ -196,3 +196,12 @@ class App:
 
         self.text_detail = tk.Text(res_frame, height=6, width=72, state="disabled", wrap="word")
         self.text_detail.pack(pady=(6, 0))
+
+    def _on_tipo_changed(self):
+        tipo = self.tipo_var.get()
+
+        if tipo == "Estudio":
+            self.quartos_spin.configure(state="disabled")
+            self.quartos_var.set(1)
+        else:
+            self.quartos_spin.configure(state="normal")
