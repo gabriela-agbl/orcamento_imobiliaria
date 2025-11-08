@@ -1,2 +1,58 @@
-# orcamento_imobiliaria
-Projeto da Faculdade com o objetivo de fazer um orçamento de aluguel usando python.
+<div align="center">
+  
+  <h1>🏠 Projeto | Orçamento de Aluguel – R.M Imobiliária 🏠</h1> <img src="https://acdn-us.mitiendanube.com/stores/152/670/products/unifecaf-d2e6b8324931e9ffa117331484999210-480-0.png" alt="Logo da UniFECAF" width="260"/>
+  
+</div>
+
+<div align="center">
+  <h2>🎯 Objetivo</h2>
+  O <b>Orçamento de Aluguel – R.M Imobiliária</b> é um projeto acadêmico desenvolvido como parte da disciplina 
+  <b>Algorithmic Thinking & Introduction to Object-Oriented Programming</b> na <b>Faculdade UniFECAF</b>.
+
+  O objetivo é aplicar conceitos de <b>lógica de programação</b> e <b>Programação Orientada a Objetos (POO)</b> em Python, 
+  desenvolvendo um sistema que calcula automaticamente o <b>valor do aluguel</b> conforme o tipo de imóvel e suas características.
+</div>
+
+<div align="center">
+  <h2>📋 Contexto</h2>
+  Este sistema permite calcular orçamentos para <b>apartamentos</b>, <b>casas</b> e <b>estúdios</b>, considerando:
+  <br><br>
+  🔹 Quantidade de quartos e vagas<br>
+  🔹 Presença de crianças<br>
+  🔹 Parcelamento do contrato (até 5x)<br><br>
+  O sistema exibe o valor final e gera um arquivo <b>.csv</b> com as 12 parcelas mensais.
+</div>
+
+---
+
+<div align="center">
+  <h2>🧠 Funcionalidades do Sistema</h2>
+  <div align="left">
+    • Cálculo automático do valor do aluguel ✅<br>
+    • Aplicação de descontos e acréscimos automáticos ✅<br>
+    • Interface gráfica com Tkinter ✅<br>
+    • Geração de arquivo CSV com parcelas mensais ✅<br>
+    • Exibição detalhada dos valores e contrato ✅<br>
+    • Limpeza e atualização de dados ✅<br>
+  </div>
+</div>
+
+---
+
+<div align="center">
+  <h2>⚙️ Tecnologias utilizadas e Ferramentas de apoio</h2>
+  <img src="https://www.python.org/static/community_logos/python-logo.png" alt="Python" width="90"/>
+  &emsp;&emsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/TkInterLogo.png" alt="Tkinter" width="70"/>
+  &emsp;&emsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/CSV_icon.png" alt="CSV" width="70"/>
+</div>
+
+---
+
+<div align="center"> 
+    <h1>💼 Contribuidores e Membros</h1> 
+    <a href="https://github.com/gabriela-agbl/orcamento_imobiliario/graphs/contributors"> 
+    <img src="https://contrib.rocks/image?repo=gabriela-agbl/orcamento_imobiliario"/> 
+    </a> 
+</div>
